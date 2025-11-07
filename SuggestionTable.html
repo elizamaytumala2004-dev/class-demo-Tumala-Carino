@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin - Event Suggestions</title>
+  <link  rel ="stylesheet" href= "#">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: center;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    .delete-btn {
+      background-color: red;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .delete-btn:hover {
+      background-color: darkred;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Event Suggestion</h2>
+
+  <table id="suggestionTable">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Event Name</th>
+        <th>Type</th>
+        <th>Min Guest</th>
+        <th>Max Guest</th>
+        <th>Budget</th>
+        <th>Course</th>
+        <th>Venue</th>
+        <th>Description</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody id="tableBody">
+      <tr>
+        <td colspan="10" style="text-align:center; font-style:italic;">Loading...</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <script>
+    const DB_KEY = 'eventSuggestions';
+
+    
+    document.addEventListener('DOMContentLoaded', () => {
+      loadSuggestions();
+    });
+
+    function loadSuggestions() {
+      const tableBody = document.getElementById('tableBody');
+      tableBody.innerHTML = ''; 
+
+      const data = JSON.parse(localStorage.getItem(DB_KEY)) || [];
+
+      if (data.length === 0) {
+        tableBody.innerHTML = `
+          <tr>
+            <td colspan="10" style="text-align:center; font-style:italic;">No event records found.</td>
+          </tr>
+        `;
+        return;
+      }
+
+      data.forEach((event, index) => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${index + 1}</td>
+          <td>${event.name}</td>
+          <td>${event.type}</td>
+          <td>${event.minGuest}</td>
+          <td>${event.maxGuest}</td>
+          <td>${event.budget}</td>
+          <td>${event.course}</td>
+          <td>${event.venue}</td>
+          <td>${event.description}</td>
+          <td><button class="delete-btn" onclick="deleteSuggestion(${index})">Delete</button></td>
+        `;
+        tableBody.appendChild(row);
+      });
+    }
+
+    function deleteSuggestion(index) {
+      const confirmDelete = confirm('Are you sure you want to delete this record?');
+      if (!confirmDelete) return;
+
+      const data = JSON.parse(localStorage.getItem(DB_KEY)) || [];
+      data.splice(index, 1);
+      localStorage.setItem(DB_KEY, JSON.stringify(data));
+
+      loadSuggestions(); 
+    }
+  </script>
+
+</body>
+</html>

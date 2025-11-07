@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>School Event Management System</title>
+  <link rel="stylesheet" href="Contact.css">
+</head>
+<body>
+  <div class="Login">
+    <div class="navbar">
+      <div class="icon">
+        <a href="DepartmentLogin.html"><img src="PCC Logo.png" alt="PCC Logo"></a>
+        <h2 class="logo">Pasig Catholic College</h2>
+      </div>
+      <div class="menu">
+        <ul>
+          <li><a href="index.html">PORTAL</a></li>
+          <li><a href="DepartmentLogin.html">HOME</a></li>
+          <li><a href="About.html">ABOUT</a></li>
+          <li><a href="Event.html">EVENT</a></li>
+          <li><a href="Venue.html">VENUE</a></li>
+          <li><a href="Contact.html">CONTACT US</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="form-container">
+        <form id="eventForm" class="Submittt">
+            <h2>Our school event is ready to answer your questions.</h2>
+          
+            <label for="Username">Name:</label>
+            <input type="text" id="Username" placeholder="Enter your name">
+          
+            <label for="CNumber">Contact Number:</label>
+            <input type="number" id="CNumber" placeholder="Enter your contact number">
+          
+            <label for="Emailll">Email:</label>
+            <input type="email" id="Emailll" placeholder="Enter your email address" required>
+
+          
+            <label for="Message">Message:</label>
+            <textarea id="Message" rows="5" placeholder="Enter your message here"></textarea>
+          
+            <button type="submit">Submit</button>
+          </form>
+    </div>
+  </div>
+
+  <script>
+    const DB_KEY = 'eventContact';
+  
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('eventForm');
+  
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+  
+        const username = document.getElementById('Username').value.trim();
+        const cnnumber = document.getElementById('CNumber').value.trim();
+        const emailll = document.getElementById('Emailll').value.trim();
+        const message = document.getElementById('Message').value.trim();
+        const CnumberPattern = /^09\d{9}$/;
+
+        if (!CnumberPattern.test(cnnumber)) {
+          alert("⚠️ Please enter a valid contact number!");
+          return;
+        }
+        if (!username || !cnnumber || !emailll || !message) {
+          alert('⚠️ Please fill in all fields before submitting.');
+          return;
+        }
+        
+        const newEvent = {
+          id: Date.now(),
+          username,
+          cnnumber,
+          emailll,
+          message
+        };
+  
+        let events = JSON.parse(localStorage.getItem(DB_KEY)) || [];
+        events.push(newEvent);
+        localStorage.setItem(DB_KEY, JSON.stringify(events));
+  
+        alert('✅ Event suggestion submitted successfully!');
+        form.reset();
+      });
+    });
+  </script>
+  
+</body>
+</html>

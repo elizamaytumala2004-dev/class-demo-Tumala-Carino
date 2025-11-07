@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>School Event Management System</title>
+    <link rel = "stylesheet" href = "DepartmentLogin.css">
+</head>
+<body>
+    <div class ="Login">
+        <div class ="navbar">
+            <div class = "icon">
+                <a href = "DepartmentLogin.html"><img src="PCC Logo.png" alt="PCC Logo"></a>
+                <h2 class = "logo">Pasig Catholic College</h2>
+            
+            </div>
+            <div class = "menu">
+                <ul>
+                    <li><a href = "index.html">PORTAL</a></li>
+                    <li><a href = "DepartmentLogin.html">HOME</a></li>
+                    <li><a href = "About.html">ABOUT</a></li>
+                    <li><a href = "Event.html">EVENT</a></li>
+                    <li><a href = "Venue.html">VENUE</a></li>
+                    <li><a href = "Contact.html">CONTACT US</a></li>
+                </ul>
+            </div>
+            <!--
+                May trust issue pa ako dito hehe
+            <div class="login-btn">
+                <a href="#" class="btn">Login</a>
+            </div>
+            -->
+            
+            </div>
+            <div class ="content">
+            <h1>Pasig Catholic College<br><span>Event Management System</span></h1>
+            <p class ="descript">The Pasig Catholic College Event Management System is designed to help course<br>
+                department to plan the campus event.  It allows users to view the scheduled event <br>
+                stay update.<br>
+            </p>
+
+           
+            <form class="form" onsubmit="return validateLogin()"> 
+                <!--<div class = "form" -->
+                <h2>Department</h2>
+                <input type = "email" id = "email" placeholder = "Enter Username:" required>
+                <input type = "password" id = "pass" placeholder = "Enter Password:" required>
+                <button type="submit" class="btnn">Login</button>
+
+                <p class = "link">Don't have an account?<br>
+                <a href = "#">Sign up </a> here</a></p>
+                
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function validateLogin() {
+            const email = document.getElementById("email").value;
+            const pass = document.getElementById("pass").value;
+        
+            if (email === "user@1" && pass === "12345") {
+                window.location.href = "SubmitEvent.html"; 
+                return false;
+            } else {
+                alert("Invalid username or password.");
+                return false;
+            }
+        }
+        </script>
+        
+</body>
+</html>

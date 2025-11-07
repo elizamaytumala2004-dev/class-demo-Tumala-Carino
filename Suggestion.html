@@ -1,0 +1,123 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <title>School Event Management System</title> 
+    <link rel="stylesheet" href="Suggestion.css"> 
+</head> 
+
+<body> 
+    <div class="Login"> 
+        <div class="navbar"> 
+            <div class="icon"> 
+                <a href="SubmitEvent.html"><img src="PCC Logo.png" alt="PCC Logo"></a> 
+                <h2 class="logo">Pasig Catholic College</h2> 
+            </div> 
+            <div class="menu"> 
+                <ul> 
+                    <li><a href="SubmitEvent.html">BACK</a></li>
+                    <li><a href="Suggestion.html">SUGGESTION</a></li> 
+                    <li><a href="DepartmentLogin.html">SIGN OUT</a></li> 
+                </ul> 
+            </div> 
+        </div> 
+
+        <div class="form-container">
+            <form id="eventForm" class="Submittt">
+                <h2>Suggestions</h2>
+
+                <label for="EventName">Event Name:</label>
+                <input type="text" id="EventName" placeholder="Enter event name">
+
+                <label for="EventType">Type of Event:</label>
+                <input type="text" id="EventType" placeholder="Enter type of event">
+
+                <label for="MinGuest">Minimum Guest:</label>
+                <input type="number" id="MinGuest" placeholder="Minimum number of guests">
+
+                <label for="MaxGuest">Maximum Guest:</label>
+                <input type="number" id="MaxGuest" placeholder="Maximum number of guests">
+
+                <label for="Budget">Budget:</label>
+                <input type="number" id="Budget" placeholder="Estimated budget">
+
+                <label for="Course">Course:</label>
+                <select id="Course">
+                    <option value="">--Select Course--</option>
+                    <option value="BSA">BSA</option>
+                    <option value="BSBA">BSBA</option>
+                    <option value="BSB">BSB</option>
+                    <option value="BSENTREP">BSENTREP</option>
+                    <option value="BSIT">BSIT</option>
+                    <option value="BS PSYCHOLOGY">BS PSYCHOLOGY</option>
+                    <option value="BSC">BSC</option>
+                    <option value="BSEDUC">BSEDUC</option>
+                    <option value="ALL">ALL</option>
+                </select>
+
+                <label for="Venuee">Venue:</label>
+                <select id="Venuee">
+                    <option value="">---Select---</option>
+                    <option value="Aula Minor">Aula Minor</option>
+                    <option value="San Pedro Calungsod">San Pedro Calungsod</option>
+                    <option value="St. Lorenzo Hall">St. Lorenzo Hall</option>
+                    <option value="Tahanan ni Maria">Tahanan ni Maria</option>
+                    <option value="Crown Jewel">Crown Jewel</option>
+                    <option value="Veranda">Veranda</option>
+                    <option value="Gymnasium">Gymnasium</option>
+                </select>
+
+                <label for="Description">Description of Event:</label>
+                <textarea id="Description" rows="5" placeholder="Enter text here"></textarea>            
+
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const DB_KEY = 'eventSuggestions';
+
+        document.getElementById('eventForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            
+            const eventName = document.getElementById('EventName').value.trim();
+            const type = document.getElementById('EventType').value.trim();
+            const minGuest = document.getElementById('MinGuest').value;
+            const maxGuest = document.getElementById('MaxGuest').value;
+            const budget = document.getElementById('Budget').value;
+            const course = document.getElementById('Course').value;
+            const venue = document.getElementById('Venuee').value;
+            const description = document.getElementById('Description').value.trim();
+
+           
+            if (!eventName || !type || !minGuest || !maxGuest || !budget || !course || !venue || !description) {
+                alert('⚠️ Please fill in all fields before submitting.');
+                return;
+            }
+
+            
+            const newEvent = {
+                id: Date.now(),
+                name: eventName,
+                type: type,
+                minGuest: minGuest,
+                maxGuest: maxGuest,
+                budget: budget,
+                course: course,
+                venue: venue,
+                description: description
+            };
+
+            
+            let events = JSON.parse(localStorage.getItem(DB_KEY)) || [];
+            events.push(newEvent);
+            localStorage.setItem(DB_KEY, JSON.stringify(events));
+
+            alert('✅ Event suggestion submitted successfully!');
+            document.getElementById('eventForm').reset();
+        });
+    </script>
+</body> 
+</html>

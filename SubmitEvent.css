@@ -1,0 +1,156 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.Login {
+    width: 100%;
+    min-height: 100vh;
+    background: linear-gradient(to top, rgba(150, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), url('pcc.jpg');
+    background-position: center;
+    background-size: cover;
+    
+}
+
+.navbar {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+}
+
+.icon {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.icon img {
+    width: 70px;
+    height: auto;
+    margin-top: 11px;
+}
+
+.logo {
+    color: rgb(243, 16, 16);
+    font-size: 20px;
+    font-family: Arial, sans-serif;
+}
+.menu ul {
+    display: flex;
+    list-style: none;
+    gap: 60px;
+}
+
+.menu ul li a {
+    text-decoration: none;
+    color: white;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+.menu ul li a {
+    position: relative;
+    text-decoration: none;
+    color: white;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.menu ul li a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 0%;
+    height: 2px;
+    background-color: white;
+    transition: width 0.8s ease;
+}
+
+.menu ul li a:hover::after {
+    width: 100%;
+}
+
+
+.menu ul li a:hover {
+    color: red;
+}
+
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 80px); 
+    padding: 40px 20px;
+}
+
+.Submittt1 {
+    background: rgba(255, 255, 255, 0.2); 
+    backdrop-filter: blur(10px); 
+    -webkit-backdrop-filter: blur(10px); 
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    width: 100%;
+    max-width: 500px;
+    font-family: 'Segoe UI', sans-serif;
+    border: 1px solid rgba(255, 255, 255, 0.3); 
+}
+
+.Submittt1 h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: red;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+.Submittt1 label {
+    color: #fff;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+
+.Submittt1 input,
+.Submittt1 select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.Submittt1 button {
+    margin-top: 25px;
+    width: 100%;
+    padding: 12px;
+    background-color: #b30000;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.Submittt1 button:hover {
+    background-color: #990000;
+}
+
+.Submittt1 textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    resize: vertical; 
+    font-family: 'Segoe UI', sans-serif;
+    background-color: white;
+    color: #333;
+}
